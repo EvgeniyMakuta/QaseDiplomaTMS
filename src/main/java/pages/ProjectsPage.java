@@ -19,7 +19,6 @@ public class ProjectsPage extends BasePage {
         super(driver);
     }
 
-    @Override
     public ProjectsPage openPage() {
         openPage(PROJECTS_PAGE_URL);
         return this;

@@ -5,6 +5,7 @@ public interface TestConstants {
 
     // TODO read from PropertyFile or SystemVariables
     String EMAIL = "email";
-    String PASSWORD = "password";
-
+    String PASSWORD = "pass";
+    String INVALID_EMAIL = "invalid@invalid.com";
+    String INVALID_PASSWORD = "invalid";
 }

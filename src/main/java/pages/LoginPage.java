@@ -13,12 +13,13 @@ public class LoginPage extends BasePage {
     WebElement emailInputLocator;
     @FindBy(id = "inputPassword")
     WebElement passwordInputLocator;
+    @FindBy(xpath = "//*[@class='form-control-feedback']")
+    WebElement errorMsgLocator;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    @Override
     public LoginPage openPage() {
         openPage(LOGIN_PAGE_URL);
         return this;
@@ -35,5 +36,15 @@ public class LoginPage extends BasePage {
         passwordInputLocator.sendKeys(password);
         loginBtnLocator.click();
         return new ProjectsPage(driver);
+    }
+
+    public String getErrorMessage() {
+        String message = errorMsgLocator.getText();
+        log.debug(String.format("Getting error message '%s' for locator '%s'", message, errorMsgLocator));
+        return message;
+    }
+
+    public boolean isPageOpened() {
+        return loginBtnLocator.isDisplayed();
     }
 }

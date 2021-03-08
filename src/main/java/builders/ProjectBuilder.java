@@ -6,15 +6,28 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import static constants.Constants.*;
 import static objects.enums.Access.ALL;
+import static objects.enums.AccessType.PRIVATE;
+import static objects.enums.AccessType.PUBLIC;
 
 @Log4j2
 public class ProjectBuilder {
 
-    public static Project getProject() {
+    public static Project getPublicProject() {
         Project project = Project.builder()
                 .title(getProjectName())
                 .code(getCode())
                 .description(PROJECT_DESCRIPTION)
+                .accessType(PUBLIC)
+                .build();
+        return project;
+    }
+
+    public static Project getPrivateProject() {
+        Project project = Project.builder()
+                .title(getProjectName())
+                .code(getCode())
+                .description(PROJECT_DESCRIPTION)
+                .accessType(PRIVATE)
                 .build();
         return project;
     }
@@ -32,13 +45,13 @@ public class ProjectBuilder {
     }
 
     private static String getCode() {
-        String code = getProjectName().substring(0, 4);
+        String code = getProjectName().substring(3, 7);
         log.debug(String.format("Getting code %s", code));
         return code;
     }
 
     private static String getProjectName() {
-        String name = PROJECT_PREFIX_NAME + RandomStringUtils.randomAlphabetic(5);
+        String name = PROJECT_PREFIX_NAME + RandomStringUtils.randomAlphabetic(10);
         log.debug(String.format("Getting project name %s", name));
         return name;
     }

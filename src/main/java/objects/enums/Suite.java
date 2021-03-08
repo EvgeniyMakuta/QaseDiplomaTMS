@@ -1,13 +1,11 @@
 package objects.enums;
 
-public enum AccessType {
-
-    PRIVATE("private"),
-    PUBLIC("public");
+public enum Suite {
+    WITHOUT_SUITE("Test cases without suite");
 
     private String field;
 
-    AccessType(String field) {
+    Suite(String field) {
         this.field = field;
     }
 

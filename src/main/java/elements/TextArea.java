@@ -10,6 +10,7 @@ public class TextArea extends BaseElement {
     @Override
     public void write(String text) {
         super.write(text);
+        locator.clear();
         locator.sendKeys(text);
     }
 }

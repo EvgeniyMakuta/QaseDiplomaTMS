@@ -1,13 +1,14 @@
 package objects.enums;
 
-public enum AccessType {
+public enum Status {
 
-    PRIVATE("private"),
-    PUBLIC("public");
+    DRAFT("Draft"),
+    ACTUAL("Actual"),
+    DEPRECATED("Deprecated");
 
     private String field;
 
-    AccessType(String field) {
+    Status(String field) {
         this.field = field;
     }
 

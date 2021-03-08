@@ -2,9 +2,11 @@ package adapters;
 
 import com.google.gson.Gson;
 import constants.Constants;
+import groovy.beans.PropertyReader;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
+import static java.lang.System.getProperty;
 
 public class BaseAdapter implements Constants {
     Gson converter = new Gson();

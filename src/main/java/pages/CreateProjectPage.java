@@ -19,10 +19,6 @@ public class CreateProjectPage extends BasePage {
     WebElement descriptionTextAreaLocator;
     @FindBy(xpath = "//*[@type = 'submit']")
     WebElement createProjectBtnLocator;
-    @FindBy(id = "private-access-type")
-    WebElement privateProjectTypeLocator;
-    @FindBy(id = "public-access-type")
-    WebElement publicProjectTypeLocator;
     @FindBy(id = "createButton")
     WebElement createNewProjectBtnLocator;
 
@@ -32,7 +28,6 @@ public class CreateProjectPage extends BasePage {
         super(driver);
     }
 
-    @Override
     public CreateProjectPage openPage() {
         openPage(CREATE_NEW_PROJECT_PAGE_URL);
         return this;
@@ -48,7 +43,7 @@ public class CreateProjectPage extends BasePage {
         new Input(projectNameInputLocator, PROJECT_NAME_INPUT_LABEL).write(project.getTitle());
         new Input(projectCodeInputLocator, PROJECT_CODE_INPUT_LABEL).write(project.getCode());
         new TextArea(descriptionTextAreaLocator, PROJECT_DESCRIPTION_TEXT_AREA_LABEL).write(project.getDescription());
-        new Radio(projectAccessTypeLocator, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select("private");
+        new Radio(projectAccessTypeLocator, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField());
         return projectCodeInputLocator.getAttribute("value");
     }
 
@@ -60,17 +55,10 @@ public class CreateProjectPage extends BasePage {
         createNewProjectBtnLocator.click();
     }
 
-    public ProjectPage createNewProject(Project project) {
+    public String createNewProject(Project project) {
         clickOnCreateNewProjectBtnLocator();
-        fillInNewProjectFields(project);
+        String code = fillInNewProjectFields(project).toUpperCase(Locale.ROOT);
         clickOnCreateProjectBtn();
-        return new ProjectPage(driver);
-    }
-
-    public String createNewProject2(Project project) {
-        clickOnCreateNewProjectBtnLocator();
-        String code2 = fillInNewProjectFields(project).toUpperCase(Locale.ROOT);
-        clickOnCreateProjectBtn();
-        return code2;
+        return code;
     }
 }

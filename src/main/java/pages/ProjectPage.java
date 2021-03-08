@@ -18,11 +18,6 @@ public class ProjectPage extends BasePage {
         super(driver);
     }
 
-    @Override
-    public BasePage openPage() {
-        return null;
-    }
-
     public ProjectPage openProject(String code) {
         openPage(String.format(PROJECT_PAGE_URL, code));
         return this;
@@ -49,4 +44,5 @@ public class ProjectPage extends BasePage {
     private void openProjectSettings() {
         settingsMenuLocator.click();
     }
+
 }

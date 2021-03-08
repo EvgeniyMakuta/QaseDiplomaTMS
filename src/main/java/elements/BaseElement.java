@@ -1,6 +1,7 @@
 package elements;
 
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 @Log4j2
@@ -8,6 +9,8 @@ public class BaseElement {
     public String label;
     public WebElement locator;
     public String stringLocator;
+
+    WebDriver driver;
 
     public BaseElement(WebElement locator, String label) {
         this.label = label;
@@ -19,6 +22,10 @@ public class BaseElement {
         this.stringLocator = stringLocator;
     }
 
+    public BaseElement(String label) {
+        this.label = label;
+    }
+
     private void writeActionMsg(String text) {
         log.info(String.format("Writing text '%s' into '%s' field", text, label));
     }
@@ -28,10 +35,14 @@ public class BaseElement {
     }
 
     public void write(String text) {
-        writeActionMsg(text);;
+        writeActionMsg(text);
     }
 
     public void select(String option) {
         selectActionMsg(option);
+    }
+
+    public void writeProseMirror(String text) {
+        writeActionMsg(text);
     }
 }

@@ -16,14 +16,10 @@ public abstract class BasePage extends Waiters implements Constants {
         PageFactory.initElements(driver, this);
     }
 
-    public abstract BasePage openPage();
-
     public abstract BasePage waitForPageOpened();
 
     public BasePage openPage(String url) {
         driver.get(url);
         return this;
     }
-
-
 }

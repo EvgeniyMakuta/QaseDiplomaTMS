@@ -1,13 +1,14 @@
 package objects.enums;
 
-public enum AccessType {
-
-    PRIVATE("private"),
-    PUBLIC("public");
+public enum Priority {
+    NOT_SET("Not set"),
+    HIGH("High"),
+    MEDIUM("Medium"),
+    LOW("Low");
 
     private String field;
 
-    AccessType(String field) {
+    Priority(String field) {
         this.field = field;
     }
 
