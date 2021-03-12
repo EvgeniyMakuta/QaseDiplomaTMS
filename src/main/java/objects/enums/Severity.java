@@ -1,6 +1,7 @@
 package objects.enums;
 
 public enum Severity {
+
     NOT_SET("Not set"),
     BLOCKER("Blocker"),
     CRITICAL("Critical"),

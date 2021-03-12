@@ -1,6 +1,7 @@
 package objects.enums;
 
 public enum Suite {
+
     WITHOUT_SUITE("Test cases without suite");
 
     private String field;

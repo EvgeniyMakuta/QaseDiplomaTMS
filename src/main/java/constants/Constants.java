@@ -37,13 +37,18 @@ public interface Constants {
     String PROJECT_DESCRIPTION = "New Project created by Evgeniy";
     String PROJECT_UPDATE_ALERT_MSG = "Project settings were successfully updated!";
 
-    //Project field names
+    // Test case fields values
+    String TEST_CASE_PRE_CONDITIONS_VALUE = "Any text for pre-conditions";
+    String TEST_CASE_POST_CONDITIONS_VALUE = "Any text for post-conditions";
+    String TEST_CASE_DESCRIPTION_VALUE = "Any text for description";
+
+    //Project field labels
     String PROJECT_NAME_INPUT_LABEL = "Project name";
     String PROJECT_CODE_INPUT_LABEL = "Project Code";
     String PROJECT_DESCRIPTION_TEXT_AREA_LABEL = "Description";
     String PROJECT_ACCESS_TYPE_RADIO_LABEL = "Project access type";
 
-    //Test case names
+    //Test case labels
     String TEST_CASE_TITLE_INPUT_LABEL = "Title";
     String TEST_CASE_PREFIX_NAME = "TC-";
     String TEST_CASE_PRIORITY_LABEL = "Priority";
@@ -56,8 +61,4 @@ public interface Constants {
     String TEST_CASE_DESCRIPTION_LABEL = "Description";
     String TEST_CASE_PRECONDITIONS_LABEL = "Pre-conditions";
     String TEST_CASE_POSTCONDITIONS_LABEL = "Post-conditions";
-
-    String EMAIL = "email";
-    String PASSWORD = "pass";
-
 }

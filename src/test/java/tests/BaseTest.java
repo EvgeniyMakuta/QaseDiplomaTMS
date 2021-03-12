@@ -9,54 +9,55 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import pages.*;
-import steps.LoginStep;
-import steps.StartStep;
+import steps.*;
 import test_data.TestConstants;
 import utils.CapabilitiesGenerator;
+import utils.TestListener;
 import waiters.Waiters;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.testng.Assert.fail;
 
 @Log4j2
+@Listeners(TestListener.class)
 public class BaseTest implements TestConstants {
     WebDriver driver;
-    LoginPage loginPage;
-    ProjectsPage projectsPage;
-    ProjectPage projectPage;
-    CreateProjectPage createProjectPage;
     LoginStep loginStep;
-    CreateTestCasePage createTestCasePage;
-    StartPage startPage;
     StartStep startStep;
-    SettingsPage settingsPage;
+    ProjectStep projectStep;
+    ProjectsStep projectsStep;
+    CreateProjectStep createProjectStep;
+    CreateTestCaseStep createTestCaseStep;
+    SettingsStep settingsStep;
+    ProjectsPage projectsPage;
+    CreateProjectPage createProjectPage;
     Waiters wait;
 
     User validUser = UserBuilder.getValidUser();
 
     @BeforeMethod
     public void setUp() {
-       WebDriverManager.chromedriver().setup();
-       try {
-           driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
-       } catch (SessionNotCreatedException e) {
-           log.fatal(e.getLocalizedMessage());
-           fail("Browser is not opened");
-       }
+        WebDriverManager.chromedriver().setup();
+        try {
+            driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
+        } catch (SessionNotCreatedException e) {
+            log.fatal(e.getLocalizedMessage());
+            fail("Browser is not opened");
+        }
         driver.manage().window().maximize();
-       // TODO выгести отдельно!
-       loginPage = new LoginPage(driver);
-       projectsPage = new ProjectsPage(driver);
-       projectPage = new ProjectPage(driver);
-       createProjectPage = new CreateProjectPage(driver);
-       loginStep = new LoginStep(driver);
-       createTestCasePage = new CreateTestCasePage(driver);
-       startPage = new StartPage(driver);
-       wait = new Waiters(driver);
-       startStep = new StartStep(driver);
-       settingsPage = new SettingsPage(driver);
-       wait.implicitWait(IMPLICIT_WAIT, SECONDS);
+        wait = new Waiters(driver);
+        wait.implicitWait(IMPLICIT_WAIT, SECONDS);
+        loginStep = new LoginStep(driver);
+        startStep = new StartStep(driver);
+        projectStep = new ProjectStep(driver);
+        createProjectStep = new CreateProjectStep(driver);
+        settingsStep = new SettingsStep(driver);
+        createTestCaseStep = new CreateTestCaseStep(driver);
+        projectsStep = new ProjectsStep(driver);
+        projectsPage = new ProjectsPage(driver);
+        createProjectPage = new CreateProjectPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)

@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Select extends BaseElement {
-    String DROP_DOWN_XPATH = "//*[contains(text(), '%s')]/parent::*//input[@type='text']";
-    String OPTION_XPATH = "//*[contains(text(), '%s')]/parent::*//*[contains(text(), '%s')]";
+   private static final String DROP_DOWN_XPATH = "//*[contains(text(), '%s')]/parent::*//input[@type='text']";
+   private static final String OPTION_XPATH = "//*[contains(text(), '%s')]/parent::*//*[contains(text(), '%s')]";
 
     public Select(String label, WebDriver driver) {
         super(label);

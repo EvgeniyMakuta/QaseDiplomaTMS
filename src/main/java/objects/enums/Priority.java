@@ -1,6 +1,7 @@
 package objects.enums;
 
 public enum Priority {
+
     NOT_SET("Not set"),
     HIGH("High"),
     MEDIUM("Medium"),

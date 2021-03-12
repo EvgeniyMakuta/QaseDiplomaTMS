@@ -1,12 +1,11 @@
 package adapters;
 
+import builders.PropertyReader;
 import com.google.gson.Gson;
 import constants.Constants;
-import groovy.beans.PropertyReader;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.System.getProperty;
 
 public class BaseAdapter implements Constants {
     Gson converter = new Gson();
@@ -18,9 +17,10 @@ public class BaseAdapter implements Constants {
      * @return whole body of the response.
      */
     public Response post(String uri, String body) {
+        String apiTokenValue = System.getenv().getOrDefault("apiToken", PropertyReader.getProperty("apiToken"));
         return
         given()
-                .header(API_TOKEN_KEY, API_TOKEN_VALUE)
+                .header(API_TOKEN_KEY, apiTokenValue)
                 .header(CONTENT_TYPE_HEADER_KEY, CONTENT_TYPE_HEADER_VALUE)
                 .body(body)
         .when()

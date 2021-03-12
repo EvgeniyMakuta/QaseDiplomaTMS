@@ -19,6 +19,7 @@ public class ProjectBuilder {
                 .description(PROJECT_DESCRIPTION)
                 .accessType(PUBLIC)
                 .build();
+        log.debug(String.format("Getting public project %s", project.toString()));
         return project;
     }
 
@@ -29,10 +30,11 @@ public class ProjectBuilder {
                 .description(PROJECT_DESCRIPTION)
                 .accessType(PRIVATE)
                 .build();
+        log.debug(String.format("Getting private project %s", project.toString()));
         return project;
     }
 
-    public static Project getProjectByAPI() {
+    public static Project getProjectForAPI() {
         Project project = Project.builder()
                 .title(getProjectName())
                 .access(ALL)

@@ -1,12 +1,11 @@
 package elements;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Input extends BaseElement {
-    String INPUT_XPATH = "//*[contains(text(), '%s')]/parent::*//*[@class='ProseMirror']";
+    private static final String INPUT_XPATH = "//*[contains(text(), '%s')]/parent::*//*[@class='ProseMirror']";
 
     public Input(WebElement locator, String label) {
         super(locator, label);
@@ -16,7 +15,6 @@ public class Input extends BaseElement {
         super(label);
         this.driver = driver;
     }
-
 
     @Override
     public void write(String text) {
