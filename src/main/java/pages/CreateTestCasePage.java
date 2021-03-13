@@ -3,11 +3,15 @@ package pages;
 import elements.Input;
 import elements.Select;
 import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 import objects.TestCase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
+@Log4j2
 public class CreateTestCasePage extends BasePage {
     @FindBy(id = "save-case")
     WebElement saveTestCaseBtnLocator;
@@ -17,15 +21,15 @@ public class CreateTestCasePage extends BasePage {
     WebElement createNewTestCaseBrnLocator;
     @FindBy(id = "create-case-button")
     WebElement createOneMoreTestCaseBtnLocator;
-
+    @FindBy(xpath = "//*[contains(@class, 'case-row-title')]")
+    List<WebElement> testCasesListLocator;
 
     public CreateTestCasePage(WebDriver driver) {
         super(driver);
     }
 
-    // TODO  тоже самое - не могу выбрать из базового класса openPage?
     public CreateTestCasePage openPage(String code) {
-        openPage(String.format(CREATE_NEW_TEST_CASE_URL, code));
+        super.openPage(String.format(CREATE_NEW_TEST_CASE_URL, code));
         return this;
     }
 
@@ -37,6 +41,7 @@ public class CreateTestCasePage extends BasePage {
 
     @SneakyThrows
     private void fillInTestCaseFields(TestCase testCase) {
+        log.debug("Creating test case: " + testCase);
         new Input(titleTestCaseLocator, TEST_CASE_TITLE_INPUT_LABEL).write(testCase.getTitle());
         new Select(TEST_CASE_PRIORITY_LABEL, driver).select(testCase.getPriority().getField());
         new Input(TEST_CASE_DESCRIPTION_LABEL, driver).writeProseMirror(testCase.getDescription());
@@ -75,5 +80,9 @@ public class CreateTestCasePage extends BasePage {
 
     private void clickOnSaveTestCase() {
         saveTestCaseBtnLocator.click();
+    }
+
+    public String getTestCaseTitle(int i) {
+       return testCasesListLocator.get(i).getText();
     }
 }

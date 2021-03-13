@@ -7,30 +7,25 @@ import objects.Project;
 import objects.TestCase;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+
 public class TestCaseTest extends BaseTest {
 
-    @Test
-    public void firstTestCaseShouldBeCreated() {
-        Project project = ProjectBuilder.getProjectByAPI();
-        String projectCode = new ProjectsAdapter().create(project);
-        TestCase testCase = TestCaseBuilder.getTestCase();
-        loginStep
-                .login(validUser);
-        projectPage
-                .openProject(projectCode);
-        createTestCasePage
-                .createFirstTestCase(testCase);
-    }
-
-    @Test
-    public void OneMoreTestCaseShouldBeCreated() {
-       Project project = ProjectBuilder.getProjectByAPI();
-        String projectCode = new ProjectsAdapter().create(project);
-        TestCase testCase = TestCaseBuilder.getTestCase();
-        loginStep.login(validUser );
-        projectPage.openProject(projectCode);
-        createTestCasePage.createFirstTestCase(testCase);
-        TestCase testCase2 = TestCaseBuilder.getTestCase();
-        createTestCasePage.createMoreTestCases(testCase2);
+    @Test(description = "Verify that test cases are created")
+    public void testCasesShouldBeCreated() {
+        Project project = ProjectBuilder.getProjectForAPI();
+        new ProjectsAdapter().create(project);
+        TestCase firstTestCase = TestCaseBuilder.getTestCase();
+        loginStep.login(validUser);
+        projectStep.openProject(project);
+        String expectedFirstTCName = firstTestCase.getTitle();
+        createTestCaseStep.createNewTestCase(firstTestCase, "NEW");
+        TestCase secondTestCase = TestCaseBuilder.getTestCase();
+        createTestCaseStep.createNewTestCase(secondTestCase, "PLUS");
+        String expectedSecondTCName = secondTestCase.getTitle();
+        String actualFirstTCName = createTestCaseStep.getTestCaseTitleByIndex(0);
+        String actualSecondTCName = createTestCaseStep.getTestCaseTitleByIndex(1);
+        assertEquals(actualFirstTCName, expectedFirstTCName, "Test case title is not valid: " + actualFirstTCName);
+        assertEquals(actualSecondTCName, expectedSecondTCName, "Test case title is not valid: " + actualSecondTCName);
     }
 }

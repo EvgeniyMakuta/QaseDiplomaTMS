@@ -9,29 +9,39 @@ import pages.ProjectsPage;
 
 @Log4j2
 public class LoginStep {
-    private final LoginPage loginPage;
-    private final WebDriver driver;
+    LoginPage loginPage;
+    WebDriver driver;
+    ProjectsPage projectsPage;
 
-    public LoginStep(WebDriver driver) {
+    public LoginStep(WebDriver driver, LoginPage loginPage, ProjectsPage projectsPage) {
         this.driver = driver;
-        this.loginPage = new LoginPage(driver);
+        this.loginPage = loginPage;
+        this.projectsPage = projectsPage;
     }
 
-    @Step("Login by {user}")
-    public ProjectsPage login(User user) {
-        log.info(String.format("Logging by %s", user));
-        attemptToLogin(user)
+    @Step("Login by {user.email}")
+    public ProjectsStep login(User user) {
+        attemptToLogin(user);
+        projectsPage
                 .waitForPageOpened();
-        return new ProjectsPage(driver);
+        return new ProjectsStep(driver, projectsPage);
     }
 
-    @Step("Attempt to login by {user}")
-    public ProjectsPage attemptToLogin(User user) {
+    @Step("Attempt to login by {user.email}")
+    public ProjectsStep attemptToLogin(User user) {
         log.info(String.format("Logging by %s", user));
         loginPage
                 .openPage()
                 .waitForPageOpened()
                 .login(user.getEmail(), user.getPassword());
-        return new ProjectsPage(driver);
+        return new ProjectsStep(driver, projectsPage);
+    }
+
+    public String getErrorMessage() {
+       return loginPage.getErrorMessage();
+    }
+
+    public boolean isPageOpened() {
+       return loginPage.isPageOpened();
     }
 }

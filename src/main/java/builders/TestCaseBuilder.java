@@ -4,7 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import objects.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import static constants.Constants.TEST_CASE_PREFIX_NAME;
+import static constants.Constants.*;
 import static objects.enums.AutomationStatus.TO_BE_AUTOMATED;
 import static objects.enums.Behavior.POSITIVE;
 import static objects.enums.Priority.LOW;
@@ -16,20 +16,24 @@ import static objects.enums.Type.SMOKE;
 @Log4j2
 public class TestCaseBuilder {
 
+    private TestCaseBuilder() {
+    }
+
     public static TestCase getTestCase() {
         TestCase testCase = TestCase.builder()
                 .title(getTestCaseName())
                 .status(DRAFT)
-                .description("Any text for description")
+                .description(TEST_CASE_DESCRIPTION_VALUE)
                 .suite(WITHOUT_SUITE)
                 .severity(MINOR)
                 .priority(LOW)
                 .type(SMOKE)
                 .behavior(POSITIVE)
                 .automationStatus(TO_BE_AUTOMATED)
-                .preConditions("Any text for pre-conditions")
-                .postConditions("Any text for post-conditions")
+                .preConditions(TEST_CASE_PRE_CONDITIONS_VALUE)
+                .postConditions(TEST_CASE_POST_CONDITIONS_VALUE)
                 .build();
+        log.debug(String.format("Getting testCase %s", testCase.toString()));
         return testCase;
     }
 

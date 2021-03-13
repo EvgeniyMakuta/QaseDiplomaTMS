@@ -32,6 +32,7 @@ public class LoginPage extends BasePage {
     }
 
     public ProjectsPage login(String email, String password) {
+        log.debug(String.format("Login with email: %s. Password: %s", email, password));
         emailInputLocator.sendKeys(email);
         passwordInputLocator.sendKeys(password);
         loginBtnLocator.click();

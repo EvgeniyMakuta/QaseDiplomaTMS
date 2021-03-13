@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Radio extends BaseElement {
 
-    String accessTypeLocator = "//*[@id='%s-access-type']";
+   private static final String ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
 
     public Radio(String stringLocator, String label, WebDriver driver) {
         super(stringLocator, label);
@@ -15,6 +15,6 @@ public class Radio extends BaseElement {
     @Override
     public void select(String option) {
         super.select(option);
-        driver.findElement(By.xpath(String.format(accessTypeLocator, option))).click();
+        driver.findElement(By.xpath(String.format(ACCESS_TYPE_LOCATOR, option))).click();
     }
 }

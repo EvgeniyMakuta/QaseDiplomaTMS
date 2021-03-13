@@ -14,18 +14,10 @@ public class SettingsTest extends BaseTest {
         Project project = ProjectBuilder.getPublicProject();
         loginStep
                 .login(validUser);
-        createProjectPage
-                 .createNewProject(project);
+        createProjectStep.createProject(project);
         Project updatedProject = ProjectBuilder.getPrivateProject();
-        settingsPage
-                .updateProject(updatedProject);
-        String alert = settingsPage.getAlertMeg();
+        settingsStep.updateProject(updatedProject);
+        String alert = settingsStep.getErrorMessage();
         assertEquals(alert, PROJECT_UPDATE_ALERT_MSG, "Fields are not updated or/and alert msg is invalid: " + alert);
-    }
-
-    @Test
-    public void tes() {
-        loginStep.login(validUser);
-        settingsPage.openPage("XZKX");
     }
 }

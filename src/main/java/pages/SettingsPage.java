@@ -3,11 +3,13 @@ package pages;
 import elements.Input;
 import elements.Radio;
 import elements.TextArea;
+import lombok.extern.log4j.Log4j2;
 import objects.Project;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j2
 public class SettingsPage extends BasePage {
     @FindBy(xpath = "//*[@type='submit']")
     WebElement updateSettingsBrnLocator;
@@ -30,7 +32,7 @@ public class SettingsPage extends BasePage {
     @FindBy(xpath = "//*[@class='submenu-item-text'] [contains(text(), 'Settings')]")
     WebElement settingsMenuLocator;
 
-    String projectAccessTypeLocator = "//*[@id='%s-access-type']";
+   private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
 
     public SettingsPage(WebDriver driver) {
         super(driver);
@@ -42,17 +44,17 @@ public class SettingsPage extends BasePage {
         return this;
     }
 
-    // TODO ??? Почему не могу выбрать openPage из базового????
     public SettingsPage openPage(String code) {
-        openPage(String.format(SETTINGS_URL, code));
+        super.openPage(String.format(SETTINGS_URL, code));
         return this;
     }
 
     private void fillInProjectFields(Project project) {
+        log.debug(String.format("Filling in the project fields: ", project));
         new Input(projectNameInputLocator, PROJECT_NAME_INPUT_LABEL).write(project.getTitle());
         new Input(projectCodeInputLocator, PROJECT_CODE_INPUT_LABEL).write(project.getCode());
         new TextArea(projectDescriptionTextAreaLocator, PROJECT_DESCRIPTION_TEXT_AREA_LABEL).write(project.getDescription());
-        new Radio(projectAccessTypeLocator, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField());
+        new Radio(PROJECT_ACCESS_TYPE_LOCATOR, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField());
     }
 
     public SettingsPage updateProject(Project project) {
@@ -62,7 +64,9 @@ public class SettingsPage extends BasePage {
         return this;
     }
 
-    public String getAlertMeg() {
-       return alertMegLocator.getText();
+    public String getAlertMsg() {
+        String alert = alertMegLocator.getText();
+        log.debug("alert message is " + alert);
+       return alert;
     }
 }

@@ -3,6 +3,7 @@ package pages;
 import elements.Input;
 import elements.Radio;
 import elements.TextArea;
+import lombok.extern.log4j.Log4j2;
 import objects.Project;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.Locale;
 
+@Log4j2
 public class CreateProjectPage extends BasePage {
     @FindBy(id = "inputTitle")
     WebElement projectNameInputLocator;
@@ -22,7 +24,7 @@ public class CreateProjectPage extends BasePage {
     @FindBy(id = "createButton")
     WebElement createNewProjectBtnLocator;
 
-    String projectAccessTypeLocator = "//*[@id='%s-access-type']";
+   private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
 
     public CreateProjectPage(WebDriver driver) {
         super(driver);
@@ -40,10 +42,11 @@ public class CreateProjectPage extends BasePage {
     }
 
     private String fillInNewProjectFields(Project project) {
+        log.debug("Creating the project: " + project);
         new Input(projectNameInputLocator, PROJECT_NAME_INPUT_LABEL).write(project.getTitle());
         new Input(projectCodeInputLocator, PROJECT_CODE_INPUT_LABEL).write(project.getCode());
         new TextArea(descriptionTextAreaLocator, PROJECT_DESCRIPTION_TEXT_AREA_LABEL).write(project.getDescription());
-        new Radio(projectAccessTypeLocator, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField());
+        new Radio(PROJECT_ACCESS_TYPE_LOCATOR, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField());
         return projectCodeInputLocator.getAttribute("value");
     }
 

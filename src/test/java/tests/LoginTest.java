@@ -4,25 +4,25 @@ import builders.UserBuilder;
 import objects.User;
 import org.testng.annotations.Test;
 import test_data.TestDataProvider;
+import utils.Retry;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    @Test(description = "Verify that user is logged in")
+    @Test(description = "Verify that user is logged in", retryAnalyzer = Retry.class)
     public void userShouldBeLoggedIn() {
         loginStep
                 .login(validUser);
-        assertTrue(projectsPage.isPageOpened(), "Projects page is not opened");
+        assertTrue(projectsStep.isPageOpened(), "Projects page is not opened");
     }
 
     @Test(description = "Verify that login form is opened from main page")
     public void loginFormShouldBeOpened() {
         startStep
-                .openPage()
                 .openLoginForm();
-        assertTrue(loginPage.isPageOpened(), "Login form is not displayed");
+        assertTrue(loginStep.isPageOpened(), "Login form is not displayed");
     }
 
     @Test(description = "Verify that error message appears on attempt to login with invalid credentials",
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
         User user = UserBuilder.getUser(email, password);
        loginStep
                .attemptToLogin(user);
-       String errorMessage = loginPage.getErrorMessage();
+       String errorMessage = loginStep.getErrorMessage();
        assertEquals(errorMessage, errorMsg, "Wrong error message is displayed: " + errorMessage);
     }
 }
