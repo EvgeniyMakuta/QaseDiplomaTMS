@@ -10,7 +10,6 @@ import static io.restassured.RestAssured.given;
 
 public class BaseAdapter implements Constants {
     Gson converter = new Gson();
-    private static final String API_TOKEN = "apiToken";
 
     /**
      *

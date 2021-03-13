@@ -21,7 +21,8 @@ public class PropertyReader {
     public static Properties readProperties() {
         properties = new Properties();
         try {
-            inputStream = groovy.beans.PropertyReader.class.getResourceAsStream(getCorrectPath());
+            inputStream = PropertyReader.class.getResourceAsStream(getCorrectPath());
+
             if (inputStream != null)
                 properties.load(inputStream);
         } catch (Exception ex) {

@@ -1,6 +1,8 @@
 package constants;
 
 public interface Constants {
+    String API_TOKEN = "apiToken";
+
     // URL's
     String MAIN_PAGE_URL = "https://qase.io/";
     String BASE_PATH = "https://app.qase.io/";
@@ -41,8 +43,6 @@ public interface Constants {
     String TEST_CASE_PRE_CONDITIONS_VALUE = "Any text for pre-conditions";
     String TEST_CASE_POST_CONDITIONS_VALUE = "Any text for post-conditions";
     String TEST_CASE_DESCRIPTION_VALUE = "Any text for description";
-    String TEST_CASE_NEW = "";
-    String TEST_CASE_PLUS = "";
 
     //Project field labels
     String PROJECT_NAME_INPUT_LABEL = "Project name";
