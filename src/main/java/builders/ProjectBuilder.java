@@ -4,7 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import objects.Project;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import static constants.Constants.*;
+import static constants.IConstants.*;
 import static objects.enums.Access.ALL;
 import static objects.enums.AccessType.PRIVATE;
 import static objects.enums.AccessType.PUBLIC;

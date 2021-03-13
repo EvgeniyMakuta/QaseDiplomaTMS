@@ -4,7 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import objects.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import static constants.Constants.*;
+import static constants.IConstants.*;
 import static objects.enums.AutomationStatus.TO_BE_AUTOMATED;
 import static objects.enums.Behavior.POSITIVE;
 import static objects.enums.Priority.LOW;

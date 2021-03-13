@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-import static constants.Constants.IMPLICIT_WAIT;
+import static constants.IConstants.IMPLICIT_WAIT;
 import static org.testng.Assert.fail;
 
 @Log4j2

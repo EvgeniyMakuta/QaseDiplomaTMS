@@ -3,7 +3,7 @@ package test_data;
 import org.testng.annotations.DataProvider;
 import utils.PropertyReader;
 
-public class TestDataProvider implements TestConstants {
+public class TestDataProvider implements ITestConstants {
     static String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
     static String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
 

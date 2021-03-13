@@ -1,6 +1,6 @@
 package constants;
 
-public interface Constants {
+public interface IConstants {
     String API_TOKEN = "apiToken";
 
     // URL's

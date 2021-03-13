@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.Locale;
 
-import static constants.Constants.PROJECT_PREFIX_NAME;
+import static constants.IConstants.PROJECT_PREFIX_NAME;
 import static objects.enums.AccessType.PUBLIC;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

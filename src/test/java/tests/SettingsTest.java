@@ -4,7 +4,7 @@ import builders.ProjectBuilder;
 import objects.Project;
 import org.testng.annotations.Test;
 
-import static constants.Constants.PROJECT_UPDATE_ALERT_MSG;
+import static constants.IConstants.PROJECT_UPDATE_ALERT_MSG;
 import static org.testng.Assert.assertEquals;
 
 public class SettingsTest extends BaseTest {
