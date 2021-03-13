@@ -1,7 +1,6 @@
 package pages;
 
 import constants.Constants;
-import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import waiters.Waiters;

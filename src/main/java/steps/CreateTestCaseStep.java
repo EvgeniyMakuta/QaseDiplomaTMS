@@ -5,30 +5,39 @@ import lombok.extern.log4j.Log4j2;
 import objects.TestCase;
 import org.openqa.selenium.WebDriver;
 import pages.CreateTestCasePage;
+import pages.ProjectPage;
+import pages.ProjectsPage;
 
 @Log4j2
 public class CreateTestCaseStep extends BaseSteps {
-    CreateTestCasePage createTestCasePage = new CreateTestCasePage(driver);
+    CreateTestCasePage createTestCasePage;
+    ProjectPage projectPage;
+    ProjectsPage projectsPage;
 
-    public CreateTestCaseStep(WebDriver driver) {
+    public CreateTestCaseStep(WebDriver driver, ProjectPage projectPage, CreateTestCasePage createTestCasePage) {
         super(driver);
+        this.projectPage = projectPage;
+        this.createTestCasePage = createTestCasePage;
     }
 
-    @Step("Creating first test case {testCase}")
-    public ProjectsStep createFirstTestCase(TestCase testCase) {
-        log.debug("Creating first test case: " + testCase);
-        createTestCasePage
-                .createFirstTestCase(testCase)
-                .waitForPageOpened();
-        return new ProjectsStep(driver);
+    @Step("Creating test case {testCase.title}")
+    public ProjectsStep createNewTestCase(TestCase testCase, String state) {
+        log.debug(String.format("Creating %s test case: %s", state, testCase));
+        if (state.equals("NEW")) {
+            createNewTestCase(testCase);
+        } else if (state.equals("PLUS")) {
+            createPlusTestCase(testCase);
+        }
+        projectPage.waitForPageOpened();
+        return new ProjectsStep(driver, projectsPage);
     }
-    @Step("Creating one more test case {testCase}")
-    public ProjectsStep createSecondTestCase(TestCase testCase) {
-        log.debug("Creating one more test case: " + testCase);
-        createTestCasePage
-                .createMoreTestCases(testCase)
-                .waitForPageOpened();
-        return new ProjectsStep(driver);
+
+    private void createNewTestCase(TestCase testCase) {
+        createTestCasePage.createFirstTestCase(testCase);
+    }
+
+    private void createPlusTestCase(TestCase testCase) {
+        createTestCasePage.createMoreTestCases(testCase);
     }
 
     public String getTestCaseTitleByIndex(int i) {

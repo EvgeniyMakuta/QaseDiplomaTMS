@@ -9,20 +9,22 @@ import pages.ProjectPage;
 
 @Log4j2
 public class CreateProjectStep extends BaseSteps {
-    CreateProjectPage createProjectPage = new CreateProjectPage(driver);
-    ProjectPage projectPage = new ProjectPage(driver);
+    CreateProjectPage createProjectPage;
+    ProjectPage projectPage;
 
-    public CreateProjectStep(WebDriver driver) {
+    public CreateProjectStep(WebDriver driver, CreateProjectPage createProjectPage, ProjectPage projectPage) {
         super(driver);
+        this.createProjectPage = createProjectPage;
+        this.projectPage = projectPage;
     }
 
-    @Step("Creating project {project}")
+    @Step("Creating project {project.title} ")
     public ProjectStep createProject(Project project) {
         log.debug("Creating project: " + project);
         createProjectPage
                 .createNewProject(project);
         projectPage
                 .waitForPageOpened();
-        return new ProjectStep(driver);
+        return new ProjectStep(driver, projectPage);
     }
 }

@@ -3,11 +3,12 @@ package tests;
 import adapters.ProjectsAdapter;
 import builders.ProjectBuilder;
 import objects.Project;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import java.util.Locale;
 
 import static constants.Constants.PROJECT_PREFIX_NAME;
+import static objects.enums.AccessType.PUBLIC;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -22,9 +23,10 @@ public class ProjectTest extends BaseTest {
                 .createProject(project);
         String actualProjectTitle = projectStep.getProjectTitle();
         String actualProjectCode = projectStep.getProjectCode();
-        assertTrue(projectStep.isPageOpened(), "Created project page is not opened" + project);
+        boolean isRadioSelected = projectPage.isAccessTypeSelected(PUBLIC);
         assertEquals(actualProjectTitle, project.getTitle(),"Project title is wrong: " + actualProjectTitle);
         assertEquals(actualProjectCode, project.getCode().toUpperCase(Locale.ROOT), "Project code is wrong: " + actualProjectCode);
+        assertTrue(isRadioSelected, "Selected wrong access type for project");
     }
 
     @Test(description = "Verify that new private project is created")
@@ -63,7 +65,6 @@ public class ProjectTest extends BaseTest {
         assertTrue(projectsStep.isPageOpened(), "Project is not deleted " + project);
     }
 
-    // TODO в стадии доработки!
     @Test(description = "Verify that all searched project are deleted")
     public void allProjectsShouldBeDeleted() {
         loginStep.login(validUser);

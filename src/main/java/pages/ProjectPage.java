@@ -1,6 +1,8 @@
 package pages;
 
 import lombok.extern.log4j.Log4j2;
+import objects.enums.AccessType;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,8 +24,11 @@ public class ProjectPage extends BasePage {
     @FindBy(xpath = "//*[contains(@class, 'sub-menu-header')]/child::*/*[@class='header']")
     WebElement projectTitleLocator;
 
+    private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
+
     public ProjectPage(WebDriver driver) {
         super(driver);
+
     }
 
     public ProjectPage openProject(String code) {
@@ -50,7 +55,7 @@ public class ProjectPage extends BasePage {
         return new ProjectsPage(driver);
     }
 
-    private void openProjectSettings() {
+    public void openProjectSettings() {
         settingsMenuLocator.click();
     }
 
@@ -60,6 +65,11 @@ public class ProjectPage extends BasePage {
 
     public String getProjectCode() {
         return projectCodeLocator.getText();
+    }
+
+    public boolean isAccessTypeSelected(AccessType type) {
+        openProjectSettings();
+        return driver.findElement(By.xpath(String.format(PROJECT_ACCESS_TYPE_LOCATOR, type.toString().toLowerCase(Locale.ROOT)))).isSelected();
     }
 
 }

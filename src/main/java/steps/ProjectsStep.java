@@ -9,9 +9,9 @@ import pages.ProjectsPage;
 public class ProjectsStep extends BaseSteps {
     ProjectsPage projectsPage;
 
-    public ProjectsStep(WebDriver driver) {
+    public ProjectsStep(WebDriver driver, ProjectsPage projectsPage) {
         super(driver);
-        this.projectsPage = new ProjectsPage(driver);
+        this.projectsPage = projectsPage;
     }
 
     public boolean isPageOpened() {
@@ -23,5 +23,4 @@ public class ProjectsStep extends BaseSteps {
         log.debug(String.format("Deleting project with prefix %s", prefix));
         projectsPage.deleteAllProjects(prefix);
     }
-
 }

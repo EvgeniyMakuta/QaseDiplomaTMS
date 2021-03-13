@@ -8,13 +8,14 @@ import pages.SettingsPage;
 
 @Log4j2
 public class SettingsStep extends BaseSteps {
-    SettingsPage settingsPage = new SettingsPage(driver);
+    SettingsPage settingsPage;
 
-    public SettingsStep(WebDriver driver) {
+    public SettingsStep(WebDriver driver, SettingsPage settingsPage) {
         super(driver);
+        this.settingsPage = settingsPage;
     }
 
-    @Step("Updating project {project}")
+    @Step("Updating project {project.title}")
     public SettingsStep updateProject(Project project) {
     log.debug(String.format("Updating project", project));
         settingsPage

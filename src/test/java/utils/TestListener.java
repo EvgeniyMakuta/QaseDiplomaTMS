@@ -3,8 +3,6 @@ package utils;
 import io.qameta.allure.Attachment;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchSessionException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -62,7 +60,7 @@ public class TestListener implements ITestListener {
             WebDriver driver = (WebDriver) context.getAttribute("driver");
             log.debug("Taking screenshot for test: " + iTestResult.getName());
             if (driver != null) {
-                return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                return ((SсreenshotUtils.takeScreenshot(driver)));
             } else {
                 return new byte[]{};
             }

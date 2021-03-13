@@ -1,7 +1,6 @@
 package steps;
 
 import io.qameta.allure.Step;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import objects.User;
 import org.openqa.selenium.WebDriver;
@@ -14,29 +13,28 @@ public class LoginStep {
     WebDriver driver;
     ProjectsPage projectsPage;
 
-    public LoginStep(WebDriver driver) {
+    public LoginStep(WebDriver driver, LoginPage loginPage, ProjectsPage projectsPage) {
         this.driver = driver;
-        this.loginPage = new LoginPage(driver);
-        this.projectsPage = new ProjectsPage(driver);
+        this.loginPage = loginPage;
+        this.projectsPage = projectsPage;
     }
 
-    @Step("Login by {user}")
+    @Step("Login by {user.email}")
     public ProjectsStep login(User user) {
-        log.info(String.format("Logging by %s", user));
         attemptToLogin(user);
         projectsPage
                 .waitForPageOpened();
-        return new ProjectsStep(driver);
+        return new ProjectsStep(driver, projectsPage);
     }
 
-    @Step("Attempt to login by {user}")
+    @Step("Attempt to login by {user.email}")
     public ProjectsStep attemptToLogin(User user) {
         log.info(String.format("Logging by %s", user));
         loginPage
                 .openPage()
                 .waitForPageOpened()
                 .login(user.getEmail(), user.getPassword());
-        return new ProjectsStep(driver);
+        return new ProjectsStep(driver, projectsPage);
     }
 
     public String getErrorMessage() {

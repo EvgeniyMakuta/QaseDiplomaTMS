@@ -19,9 +19,9 @@ public class TestCaseTest extends BaseTest {
         loginStep.login(validUser);
         projectStep.openProject(project);
         String expectedFirstTCName = firstTestCase.getTitle();
-        createTestCaseStep.createFirstTestCase(firstTestCase);
+        createTestCaseStep.createNewTestCase(firstTestCase, "NEW");
         TestCase secondTestCase = TestCaseBuilder.getTestCase();
-        createTestCaseStep.createSecondTestCase(secondTestCase);
+        createTestCaseStep.createNewTestCase(secondTestCase, "PLUS");
         String expectedSecondTCName = secondTestCase.getTitle();
         String actualFirstTCName = createTestCaseStep.getTestCaseTitleByIndex(0);
         String actualSecondTCName = createTestCaseStep.getTestCaseTitleByIndex(1);

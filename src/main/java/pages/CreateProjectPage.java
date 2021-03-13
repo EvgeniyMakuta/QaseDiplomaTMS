@@ -46,7 +46,7 @@ public class CreateProjectPage extends BasePage {
         new Input(projectNameInputLocator, PROJECT_NAME_INPUT_LABEL).write(project.getTitle());
         new Input(projectCodeInputLocator, PROJECT_CODE_INPUT_LABEL).write(project.getCode());
         new TextArea(descriptionTextAreaLocator, PROJECT_DESCRIPTION_TEXT_AREA_LABEL).write(project.getDescription());
-        new Radio(PROJECT_ACCESS_TYPE_LOCATOR, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField()); //log.info(String.format("Creating project with following fields: Project Name: '%s'. Project Code: '%s'. Project Description: '%s'. Project"));
+        new Radio(PROJECT_ACCESS_TYPE_LOCATOR, PROJECT_ACCESS_TYPE_RADIO_LABEL, driver).select(project.getAccessType().getField());
         return projectCodeInputLocator.getAttribute("value");
     }
 

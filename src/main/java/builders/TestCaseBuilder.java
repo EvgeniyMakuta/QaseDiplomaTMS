@@ -16,6 +16,9 @@ import static objects.enums.Type.SMOKE;
 @Log4j2
 public class TestCaseBuilder {
 
+    private TestCaseBuilder() {
+    }
+
     public static TestCase getTestCase() {
         TestCase testCase = TestCase.builder()
                 .title(getTestCaseName())

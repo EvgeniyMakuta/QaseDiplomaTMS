@@ -1,7 +1,7 @@
 package test_data;
 
-import builders.PropertyReader;
 import org.testng.annotations.DataProvider;
+import utils.PropertyReader;
 
 public class TestDataProvider implements TestConstants {
     static String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));

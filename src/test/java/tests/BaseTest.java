@@ -31,7 +31,12 @@ public class BaseTest implements TestConstants {
     CreateProjectStep createProjectStep;
     CreateTestCaseStep createTestCaseStep;
     SettingsStep settingsStep;
+    ProjectPage projectPage;
+    StartPage startPage;
+    SettingsPage settingsPage;
     ProjectsPage projectsPage;
+    LoginPage loginPage;
+    CreateTestCasePage createTestCasePage;
     CreateProjectPage createProjectPage;
     Waiters wait;
 
@@ -49,15 +54,28 @@ public class BaseTest implements TestConstants {
         driver.manage().window().maximize();
         wait = new Waiters(driver);
         wait.implicitWait(IMPLICIT_WAIT, SECONDS);
-        loginStep = new LoginStep(driver);
-        startStep = new StartStep(driver);
-        projectStep = new ProjectStep(driver);
-        createProjectStep = new CreateProjectStep(driver);
-        settingsStep = new SettingsStep(driver);
-        createTestCaseStep = new CreateTestCaseStep(driver);
-        projectsStep = new ProjectsStep(driver);
+        pageInit();
+        stepInit();
+    }
+
+    private void pageInit() {
+        loginPage = new LoginPage(driver);
+        startPage = new StartPage(driver);
+        settingsPage = new SettingsPage(driver);
         projectsPage = new ProjectsPage(driver);
         createProjectPage = new CreateProjectPage(driver);
+        createTestCasePage = new CreateTestCasePage(driver);
+        projectPage = new ProjectPage(driver);
+    }
+
+    private void stepInit() {
+        loginStep = new LoginStep(driver, loginPage, projectsPage);
+        startStep = new StartStep(driver, startPage);
+        projectStep = new ProjectStep(driver, projectPage);
+        createProjectStep = new CreateProjectStep(driver, createProjectPage, projectPage);
+        settingsStep = new SettingsStep(driver, settingsPage);
+        createTestCaseStep = new CreateTestCaseStep(driver, projectPage, createTestCasePage);
+        projectsStep = new ProjectsStep(driver, projectsPage);
     }
 
     @AfterMethod(alwaysRun = true)

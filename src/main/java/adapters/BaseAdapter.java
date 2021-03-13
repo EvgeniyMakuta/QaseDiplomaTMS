@@ -1,14 +1,16 @@
 package adapters;
 
-import builders.PropertyReader;
+
 import com.google.gson.Gson;
 import constants.Constants;
 import io.restassured.response.Response;
+import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;
 
 public class BaseAdapter implements Constants {
     Gson converter = new Gson();
+    private static final String API_TOKEN = "apiToken";
 
     /**
      *
@@ -17,7 +19,7 @@ public class BaseAdapter implements Constants {
      * @return whole body of the response.
      */
     public Response post(String uri, String body) {
-        String apiTokenValue = System.getenv().getOrDefault("apiToken", PropertyReader.getProperty("apiToken"));
+        String apiTokenValue = System.getenv().getOrDefault(API_TOKEN, PropertyReader.getProperty(API_TOKEN));
         return
         given()
                 .header(API_TOKEN_KEY, apiTokenValue)

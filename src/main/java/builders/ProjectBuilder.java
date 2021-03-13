@@ -12,6 +12,9 @@ import static objects.enums.AccessType.PUBLIC;
 @Log4j2
 public class ProjectBuilder {
 
+    private ProjectBuilder() {
+    }
+
     public static Project getPublicProject() {
         Project project = Project.builder()
                 .title(getProjectName())

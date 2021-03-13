@@ -1,12 +1,15 @@
 package builders;
 
 import constants.Constants;
-
 import lombok.extern.log4j.Log4j2;
 import objects.User;
+import utils.PropertyReader;
 
 @Log4j2
 public class UserBuilder implements Constants {
+
+    private UserBuilder() {
+    }
 
     public static User getUser(String email, String password) {
         User user = User.builder()

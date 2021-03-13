@@ -1,10 +1,10 @@
-package builders;
+package utils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public final class PropertyReader {
+public class PropertyReader {
     private static String propertiesPath = "/config.properties";
     private static volatile Properties properties;
     private static InputStream inputStream;
@@ -21,7 +21,7 @@ public final class PropertyReader {
     public static Properties readProperties() {
         properties = new Properties();
         try {
-            inputStream = PropertyReader.class.getResourceAsStream(getCorrectPath());
+            inputStream = groovy.beans.PropertyReader.class.getResourceAsStream(getCorrectPath());
             if (inputStream != null)
                 properties.load(inputStream);
         } catch (Exception ex) {
