@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
 import steps.*;
-import test_data.TestConstants;
+import test_data.ITestConstants;
 import utils.CapabilitiesGenerator;
 import utils.TestListener;
 import waiters.Waiters;
@@ -22,7 +22,7 @@ import static org.testng.Assert.fail;
 
 @Log4j2
 @Listeners(TestListener.class)
-public class BaseTest implements TestConstants {
+public class BaseTest implements ITestConstants {
     WebDriver driver;
     LoginStep loginStep;
     StartStep startStep;

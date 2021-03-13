@@ -1,9 +1,9 @@
 package steps;
 
-import constants.Constants;
+import constants.IConstants;
 import org.openqa.selenium.WebDriver;
 
-public class BaseSteps implements Constants {
+public class BaseSteps implements IConstants {
     WebDriver driver;
 
     public BaseSteps(WebDriver driver) {

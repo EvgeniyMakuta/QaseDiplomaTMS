@@ -1,11 +1,11 @@
 package pages;
 
-import constants.Constants;
+import constants.IConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import waiters.Waiters;
 
-public abstract class BasePage extends Waiters implements Constants {
+public abstract class BasePage extends Waiters implements IConstants {
     WebDriver driver;
     Waiters wait;
 

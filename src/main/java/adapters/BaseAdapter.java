@@ -2,13 +2,13 @@ package adapters;
 
 
 import com.google.gson.Gson;
-import constants.Constants;
+import constants.IConstants;
 import io.restassured.response.Response;
 import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;
 
-public class BaseAdapter implements Constants {
+public class BaseAdapter implements IConstants {
     Gson converter = new Gson();
 
     /**

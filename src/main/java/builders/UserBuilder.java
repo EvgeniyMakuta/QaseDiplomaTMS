@@ -1,12 +1,12 @@
 package builders;
 
-import constants.Constants;
+import constants.IConstants;
 import lombok.extern.log4j.Log4j2;
 import objects.User;
 import utils.PropertyReader;
 
 @Log4j2
-public class UserBuilder implements Constants {
+public class UserBuilder implements IConstants {
 
     private UserBuilder() {
     }

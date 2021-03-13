@@ -12,7 +12,6 @@ public class CapabilitiesGenerator {
                 "--disable-popup-blocking",
                 "--disable-notifications",
                 "-incognito",
-//                "--headless",
                 "--disable-extensions"
         );
         options.setAcceptInsecureCerts(true);
