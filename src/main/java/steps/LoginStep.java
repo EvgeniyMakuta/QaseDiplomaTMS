@@ -19,7 +19,7 @@ public class LoginStep {
         this.projectsPage = projectsPage;
     }
 
-    @Step("Login by {user.email}")
+    @Step("Login with email {user.email}")
     public ProjectsStep login(User user) {
         attemptToLogin(user);
         projectsPage
@@ -27,7 +27,7 @@ public class LoginStep {
         return new ProjectsStep(driver, projectsPage);
     }
 
-    @Step("Attempt to login by {user.email}")
+    @Step("Attempt to login with email {user.email}")
     public ProjectsStep attemptToLogin(User user) {
         log.info(String.format("Logging by %s", user));
         loginPage
@@ -35,13 +35,5 @@ public class LoginStep {
                 .waitForPageOpened()
                 .login(user.getEmail(), user.getPassword());
         return new ProjectsStep(driver, projectsPage);
-    }
-
-    public String getErrorMessage() {
-       return loginPage.getErrorMessage();
-    }
-
-    public boolean isPageOpened() {
-       return loginPage.isPageOpened();
     }
 }

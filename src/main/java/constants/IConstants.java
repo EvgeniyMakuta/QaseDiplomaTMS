@@ -13,7 +13,7 @@ public interface IConstants {
     String CREATE_NEW_TEST_CASE_URL = BASE_PATH + "case/%s/create";
     String SETTINGS_URL = PROJECT_PAGE_URL + "/settings/general";
 
-    int IMPLICIT_WAIT = 15;
+    int IMPLICIT_WAIT = 5;
 
     //PAGE NAMES
     String MAIN_PAGE = "Main";
@@ -38,11 +38,13 @@ public interface IConstants {
     String PROJECT_GROUP = "null";
     String PROJECT_DESCRIPTION = "New Project created by Evgeniy";
     String PROJECT_UPDATE_ALERT_MSG = "Project settings were successfully updated!";
+    String PROJECT_CODE = "MK24Hy";
 
     // Test case fields values
     String TEST_CASE_PRE_CONDITIONS_VALUE = "Any text for pre-conditions";
     String TEST_CASE_POST_CONDITIONS_VALUE = "Any text for post-conditions";
     String TEST_CASE_DESCRIPTION_VALUE = "Any text for description";
+    String TEST_CASE_TITLE = "TC-MK24";
 
     //Project field labels
     String PROJECT_NAME_INPUT_LABEL = "Project name";

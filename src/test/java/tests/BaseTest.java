@@ -71,8 +71,8 @@ public class BaseTest implements ITestConstants {
     private void stepInit() {
         loginStep = new LoginStep(driver, loginPage, projectsPage);
         startStep = new StartStep(driver, startPage);
-        projectStep = new ProjectStep(driver, projectPage);
-        createProjectStep = new CreateProjectStep(driver, createProjectPage, projectPage);
+        projectStep = new ProjectStep(driver, projectPage, loginStep);
+        createProjectStep = new CreateProjectStep(driver, createProjectPage, projectPage, loginStep);
         settingsStep = new SettingsStep(driver, settingsPage);
         createTestCaseStep = new CreateTestCaseStep(driver, projectPage, createTestCasePage);
         projectsStep = new ProjectsStep(driver, projectsPage);

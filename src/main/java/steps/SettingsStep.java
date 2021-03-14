@@ -15,16 +15,12 @@ public class SettingsStep extends BaseSteps {
         this.settingsPage = settingsPage;
     }
 
-    @Step("Updating project {project.title}")
+    @Step("Updating project with title {project.title}")
     public SettingsStep updateProject(Project project) {
-    log.debug(String.format("Updating project", project));
+        log.debug(String.format("Updating project", project));
         settingsPage
                 .updateProject(project)
                 .waitForPageOpened();
-                return this;
-    }
-
-    public String getErrorMessage() {
-       return settingsPage.getAlertMsg();
+        return this;
     }
 }

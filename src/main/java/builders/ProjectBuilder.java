@@ -29,7 +29,7 @@ public class ProjectBuilder {
     public static Project getPrivateProject() {
         Project project = Project.builder()
                 .title(getProjectName())
-                .code(getCode())
+                .code(PROJECT_CODE)
                 .description(PROJECT_DESCRIPTION)
                 .accessType(PRIVATE)
                 .build();

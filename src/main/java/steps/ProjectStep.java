@@ -2,7 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import objects.Project;
+import objects.User;
 import org.openqa.selenium.WebDriver;
 import pages.ProjectPage;
 import pages.ProjectsPage;
@@ -11,23 +11,23 @@ import pages.ProjectsPage;
 public class ProjectStep extends BaseSteps {
     ProjectPage projectPage;
     ProjectsPage projectsPage;
+    LoginStep loginStep;
 
-    public ProjectStep(WebDriver driver, ProjectPage projectPage) {
+    public ProjectStep(WebDriver driver, ProjectPage projectPage, LoginStep loginStep) {
         super(driver);
         this.projectPage = projectPage;
+        this.loginStep = loginStep;
     }
 
-    @Step("Opening project {project.title}")
-    public ProjectStep openProject(Project project) {
-        log.debug(String.format("Opening project %s", project));
+    @Step("Opening project")
+    public ProjectStep openProject(String code, User user) {
+        log.debug(String.format("Opening project with code %s", code));
+        loginStep
+                .login(user);
         projectPage
-                .openProject(project.getCode())
+                .openProject(code)
                 .waitForPageOpened();
         return this;
-    }
-
-    public boolean isPageOpened() {
-       return projectPage.isPageOpened();
     }
 
     @Step("Deleting project with code {projectCode}")
@@ -39,11 +39,9 @@ public class ProjectStep extends BaseSteps {
         return new ProjectsStep(driver, projectsPage);
     }
 
-    public String getProjectTitle() {
-        return projectPage.getProjectTitle();
-    }
-
-    public String getProjectCode() {
-        return projectPage.getProjectCode();
+    @Step("Deleting test case {title}")
+    public ProjectStep deleteTestCase(String title) {
+        projectPage.deleteTestCase(title);
+        return this;
     }
 }

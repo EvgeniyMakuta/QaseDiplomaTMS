@@ -13,6 +13,7 @@ import java.util.Locale;
 
 @Log4j2
 public class CreateProjectPage extends BasePage {
+    private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
     @FindBy(id = "inputTitle")
     WebElement projectNameInputLocator;
     @FindBy(id = "inputCode")
@@ -23,8 +24,6 @@ public class CreateProjectPage extends BasePage {
     WebElement createProjectBtnLocator;
     @FindBy(id = "createButton")
     WebElement createNewProjectBtnLocator;
-
-   private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
 
     public CreateProjectPage(WebDriver driver) {
         super(driver);

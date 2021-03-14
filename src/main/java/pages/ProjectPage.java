@@ -11,6 +11,7 @@ import java.util.Locale;
 
 @Log4j2
 public class ProjectPage extends BasePage {
+    private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
     @FindBy(xpath = "//*[contains(text(), 'Test repository')]")
     WebElement projectHeaderLocator;
     @FindBy(xpath = "//*[@class='submenu-item-text'] [contains(text(), 'Settings')]")
@@ -23,8 +24,11 @@ public class ProjectPage extends BasePage {
     WebElement projectCodeLocator;
     @FindBy(xpath = "//*[contains(@class, 'sub-menu-header')]/child::*/*[@class='header']")
     WebElement projectTitleLocator;
-
-    private static final String PROJECT_ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
+    @FindBy(xpath = "//*[@title='Delete case']")
+    WebElement deleteBtnLocator;
+    @FindBy(xpath = "//*[contains(@class, 'btn-danger')]")
+    WebElement confirmDeleteBtnLocator;
+    String testCaseTitleLocator = "//*[contains(text(), '%s')]";
 
     public ProjectPage(WebDriver driver) {
         super(driver);
@@ -60,7 +64,7 @@ public class ProjectPage extends BasePage {
     }
 
     public String getProjectTitle() {
-       return projectTitleLocator.getText();
+        return projectTitleLocator.getText();
     }
 
     public String getProjectCode() {
@@ -72,4 +76,14 @@ public class ProjectPage extends BasePage {
         return driver.findElement(By.xpath(String.format(PROJECT_ACCESS_TYPE_LOCATOR, type.toString().toLowerCase(Locale.ROOT)))).isSelected();
     }
 
+    public ProjectPage deleteTestCase(String title) {
+        driver.findElement(By.xpath(String.format(testCaseTitleLocator, title))).click();
+        deleteBtnLocator.click();
+        confirmDeleteBtnLocator.click();
+        return this;
+    }
+
+    public boolean isTestCaseDisplayed(String title) {
+        return driver.findElement(By.xpath(String.format(testCaseTitleLocator, title))).isDisplayed();
+    }
 }

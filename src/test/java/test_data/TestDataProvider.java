@@ -9,7 +9,7 @@ public class TestDataProvider implements ITestConstants {
 
     @DataProvider(name = "InvalidTestDataFotLogin")
     public static Object[][] testDataForLogin() {
-        return new Object[][] {
+        return new Object[][]{
                 {INVALID_EMAIL, password, "These credentials do not match our records."},
                 {email, INVALID_PASSWORD, "These credentials do not match our records."}
         };

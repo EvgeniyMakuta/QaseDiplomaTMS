@@ -15,23 +15,23 @@ public class LoginTest extends BaseTest {
     public void userShouldBeLoggedIn() {
         loginStep
                 .login(validUser);
-        assertTrue(projectsStep.isPageOpened(), "Projects page is not opened");
+        assertTrue(projectsPage.isPageOpened(), "Projects page is not opened");
     }
 
     @Test(description = "Verify that login form is opened from main page")
     public void loginFormShouldBeOpened() {
         startStep
                 .openLoginForm();
-        assertTrue(loginStep.isPageOpened(), "Login form is not displayed");
+        assertTrue(loginPage.isPageOpened(), "Login form is not displayed");
     }
 
     @Test(description = "Verify that error message appears on attempt to login with invalid credentials",
             dataProvider = "InvalidTestDataFotLogin", dataProviderClass = TestDataProvider.class)
     public void errorMsgShouldAppearWithInvalidCredentials(String email, String password, String errorMsg) {
         User user = UserBuilder.getUser(email, password);
-       loginStep
-               .attemptToLogin(user);
-       String errorMessage = loginStep.getErrorMessage();
-       assertEquals(errorMessage, errorMsg, "Wrong error message is displayed: " + errorMessage);
+        loginStep
+                .attemptToLogin(user);
+        String errorMessage = loginPage.getErrorMessage();
+        assertEquals(errorMessage, errorMsg, "Wrong error message is displayed: " + errorMessage);
     }
 }

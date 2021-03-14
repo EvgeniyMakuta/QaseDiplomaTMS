@@ -13,10 +13,10 @@ public enum Severity {
     private String field;
 
     Severity(String field) {
-    this.field = field;
+        this.field = field;
     }
 
-    public String getField () {
+    public String getField() {
         return field;
     }
 }

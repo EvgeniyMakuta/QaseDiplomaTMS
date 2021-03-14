@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Radio extends BaseElement {
 
-   private static final String ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
+    private static final String ACCESS_TYPE_LOCATOR = "//*[@id='%s-access-type']";
 
     public Radio(String stringLocator, String label, WebDriver driver) {
         super(stringLocator, label);
