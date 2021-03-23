@@ -10,6 +10,6 @@ public class ProjectsAdapter extends BaseAdapter {
     }
 
     public Response getProject(String code) {
-       return get(API_PROJECT_URI + code);
+        return get(API_PROJECT_URI + code);
     }
 }

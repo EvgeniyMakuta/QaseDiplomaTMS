@@ -2,6 +2,7 @@ package utils;
 
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 @Log4j2
 public class CapabilitiesGenerator {
     public static ChromeOptions getChromeOptions() {

@@ -5,6 +5,7 @@ import elements.Select;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import objects.TestCase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,14 +14,11 @@ import java.util.List;
 
 @Log4j2
 public class CreateTestCasePage extends BasePage {
+    private static final By CREATE_NEW_TEST_CASE_BTN_LOCATOR = By.xpath("//*[contains(text(), 'Create new case')] | //*[@id='create-case-button']");
     @FindBy(id = "save-case")
     WebElement saveTestCaseBtnLocator;
     @FindBy(id = "title")
     WebElement titleTestCaseLocator;
-    @FindBy(xpath = "//*[contains(text(), 'Create new case')]")
-    WebElement createNewTestCaseBrnLocator;
-    @FindBy(id = "create-case-button")
-    WebElement createOneMoreTestCaseBtnLocator;
     @FindBy(xpath = "//*[contains(@class, 'case-row-title')]")
     List<WebElement> testCasesListLocator;
 
@@ -56,26 +54,11 @@ public class CreateTestCasePage extends BasePage {
         Thread.sleep(500);
     }
 
-    public ProjectPage createFirstTestCase(TestCase testCase) {
-        clickOnCreateNewCase();
+    public ProjectPage createTestCase(TestCase testCase) {
+        clickOnCreateTestCaseBtn();
         fillInTestCaseFields(testCase);
         clickOnSaveTestCase();
         return new ProjectPage(driver);
-    }
-
-    public ProjectPage createMoreTestCases(TestCase testCase) {
-        clickOnPlusCase();
-        fillInTestCaseFields(testCase);
-        clickOnSaveTestCase();
-        return new ProjectPage(driver);
-    }
-
-    private void clickOnCreateNewCase() {
-        createNewTestCaseBrnLocator.click();
-    }
-
-    private void clickOnPlusCase() {
-        createOneMoreTestCaseBtnLocator.click();
     }
 
     private void clickOnSaveTestCase() {
@@ -83,6 +66,11 @@ public class CreateTestCasePage extends BasePage {
     }
 
     public String getTestCaseTitle(int i) {
-       return testCasesListLocator.get(i).getText();
+        return testCasesListLocator.get(i).getText();
     }
+
+    private void clickOnCreateTestCaseBtn() {
+        driver.findElement(CREATE_NEW_TEST_CASE_BTN_LOCATOR).click();
+    }
+
 }

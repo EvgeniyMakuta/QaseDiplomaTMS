@@ -34,7 +34,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         log.info(String.format("======================================== SKIPPING TEST %s ========================================", iTestResult.getName(),
-        getExecutionTime(iTestResult)));
+                getExecutionTime(iTestResult)));
         takeScreenshot(iTestResult);
     }
 
