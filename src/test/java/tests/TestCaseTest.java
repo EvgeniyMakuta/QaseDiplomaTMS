@@ -13,15 +13,12 @@ public class TestCaseTest extends BaseTest {
     @Test(description = "Verify that test cases are created")
     public void testCasesShouldBeCreated() {
         TestCase firstTestCase = TestCaseBuilder.getTestCase();
-        projectStep
-                .openProject(PROJECT_CODE, validUser);
+        projectStep.openProject(PROJECT_CODE, validUser);
         String expectedFirstTCName = firstTestCase.getTitle();
-        createTestCaseStep
-                .createTestCase(firstTestCase);
+        createTestCaseStep.createTestCase(firstTestCase);
         TestCase secondTestCase = TestCaseBuilder.getTestCase();
         String expectedSecondTCName = secondTestCase.getTitle();
-        createTestCaseStep
-                .createTestCase(secondTestCase);
+        createTestCaseStep.createTestCase(secondTestCase);
         String actualFirstTCName = createTestCaseStep.getTestCaseTitleByIndex(0);
         String actualSecondTCName = createTestCaseStep.getTestCaseTitleByIndex(1);
         assertEquals(actualFirstTCName, expectedFirstTCName, "Test case title is not valid: " + actualFirstTCName);
@@ -31,11 +28,10 @@ public class TestCaseTest extends BaseTest {
     @Test(description = "Verify that test case is deleted")
     public void testCaseShouldBeDeleted() {
         TestCase testCase = TestCaseBuilder.getTestCase();
-        projectStep
-                .openProject(PROJECT_CODE, validUser);
+        projectStep.openProject(PROJECT_CODE, validUser);
         String testCaseTitle = testCase.getTitle();
         createTestCaseStep.createTestCase(testCase);
-                projectStep.deleteTestCase(testCaseTitle);
+        projectStep.deleteTestCase(testCaseTitle);
         boolean isTestCaseDisplayed = projectPage.isTestCaseDisplayed(testCaseTitle);
         assertTrue(isTestCaseDisplayed, "Test case is still displayed");
     }

@@ -25,10 +25,8 @@ public class CreateProjectStep extends BaseSteps {
     public ProjectStep createProject(Project project, User user) {
         log.debug("Creating project: " + project);
         loginStep.login(user);
-        createProjectPage
-                .createNewProject(project);
-        projectPage
-                .waitForPageOpened();
+        createProjectPage.createNewProject(project);
+        projectPage.waitForPageOpened();
         return new ProjectStep(driver, projectPage, loginStep);
     }
 }

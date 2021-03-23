@@ -22,8 +22,7 @@ public class ProjectStep extends BaseSteps {
     @Step("Opening project")
     public ProjectStep openProject(String code, User user) {
         log.debug(String.format("Opening project with code %s", code));
-        loginStep
-                .login(user);
+        loginStep.login(user);
         projectPage
                 .openProject(code)
                 .waitForPageOpened();

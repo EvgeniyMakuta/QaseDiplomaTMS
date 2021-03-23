@@ -22,8 +22,7 @@ public class LoginStep {
     @Step("Login with email {user.email}")
     public ProjectsStep login(User user) {
         attemptToLogin(user);
-        projectsPage
-                .waitForPageOpened();
+        projectsPage.waitForPageOpened();
         return new ProjectsStep(driver, projectsPage);
     }
 

@@ -16,8 +16,7 @@ public class ProjectTest extends BaseTest {
     @Test(description = "Verify that new private project is created")
     public void newPrivateProjectShouldBeCreated() {
         Project project = ProjectBuilder.getPrivateProject();
-        createProjectStep
-                .createProject(project, validUser);
+        createProjectStep.createProject(project, validUser);
         String actualProjectTitle = projectPage.getProjectTitle();
         String actualProjectCode = projectPage.getProjectCode();
         boolean isPrivateTypeSelected = projectPage.isAccessTypeSelected(PRIVATE);
@@ -29,16 +28,14 @@ public class ProjectTest extends BaseTest {
     @Test(description = "Verify that new public project is created")
     public void newPublicProjectShouldBeCreated() {
         Project project = ProjectBuilder.getPublicProject();
-        createProjectStep
-                .createProject(project, validUser);
+        createProjectStep.createProject(project, validUser);
         String actualProjectTitle = projectPage.getProjectTitle();
         String actualProjectCode = projectPage.getProjectCode();
         boolean isPublicTypeSelected = projectPage.isAccessTypeSelected(PUBLIC);
         assertEquals(actualProjectTitle, project.getTitle(), "Project title is wrong: " + actualProjectTitle);
         assertEquals(actualProjectCode, project.getCode().toUpperCase(Locale.ROOT), "Project code is wrong: " + actualProjectCode);
         assertTrue(isPublicTypeSelected, "Wrong access type selected for project");
-        projectStep
-                .deleteProject(actualProjectCode);
+        projectStep.deleteProject(actualProjectCode);
         assertTrue(projectsPage.isPageOpened(), "Project is not deleted " + project);
     }
 }

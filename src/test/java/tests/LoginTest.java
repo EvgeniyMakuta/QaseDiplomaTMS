@@ -13,15 +13,13 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "Verify that user is logged in", retryAnalyzer = Retry.class)
     public void userShouldBeLoggedIn() {
-        loginStep
-                .login(validUser);
+        loginStep.login(validUser);
         assertTrue(projectsPage.isPageOpened(), "Projects page is not opened");
     }
 
     @Test(description = "Verify that login form is opened from main page")
     public void loginFormShouldBeOpened() {
-        startStep
-                .openLoginForm();
+        startStep.openLoginForm();
         assertTrue(loginPage.isPageOpened(), "Login form is not displayed");
     }
 
@@ -29,8 +27,7 @@ public class LoginTest extends BaseTest {
             dataProvider = "InvalidTestDataFotLogin", dataProviderClass = TestDataProvider.class)
     public void errorMsgShouldAppearWithInvalidCredentials(String email, String password, String errorMsg) {
         User user = UserBuilder.getUser(email, password);
-        loginStep
-                .attemptToLogin(user);
+        loginStep.attemptToLogin(user);
         String errorMessage = loginPage.getErrorMessage();
         assertEquals(errorMessage, errorMsg, "Wrong error message is displayed: " + errorMessage);
     }

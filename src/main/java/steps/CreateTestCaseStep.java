@@ -26,8 +26,7 @@ public class CreateTestCaseStep extends BaseSteps {
 
     @Step("Creating test case {testCase.title}")
     public ProjectStep createTestCase(TestCase testCase) {
-        createTestCasePage
-                .createTestCase(testCase);
+        createTestCasePage.createTestCase(testCase);
         return new ProjectStep(driver, projectPage, loginStep);
     }
 }

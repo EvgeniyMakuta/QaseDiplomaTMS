@@ -44,7 +44,6 @@ public interface IConstants {
     String TEST_CASE_PRE_CONDITIONS_VALUE = "Any text for pre-conditions";
     String TEST_CASE_POST_CONDITIONS_VALUE = "Any text for post-conditions";
     String TEST_CASE_DESCRIPTION_VALUE = "Any text for description";
-    String TEST_CASE_TITLE = "TC-MK24";
 
     //Project field labels
     String PROJECT_NAME_INPUT_LABEL = "Project name";
